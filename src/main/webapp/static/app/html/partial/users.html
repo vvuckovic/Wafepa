@@ -1,0 +1,49 @@
+
+
+<h2>Users <span class="badge">{{brojU}}</span></h2>
+
+<input type="text" ng-model="search"/>
+
+<button ng-click="pageU=0;getAll()">Search</button>
+
+<button ng-click="search=null;getAll()">Clear</button>
+
+<table ng-init="pageU=0;getAll();" class="table table-striped">              
+	<thead>
+		<tr>
+			<th> ID </th>				
+			<th> email </th>
+			<th> Firs name </th>
+			<th> Last name </th>
+			<th> Actions </th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="user in users"> 
+			<td>{{ user.id }}</td>
+			<td>{{ user.email }}</td>
+			<td>{{ user.firstname }}</td>
+			<td>{{ user.lastname }}</td>
+			<td><button ng-click="remove(user.id)"  class="btn btn-danger btn-xs">Delete</button>
+			<a href="/#/users/edit/{{user.id}}" class="btn btn-warning btn-xs">Edit</a></td> <!-- ne moramo user.id da stavimo u viticaste zagrade -->
+		</tr>
+	</tbody>
+	
+</table>
+
+<div class="row">
+	<div class="col-md-12 text-right">
+		<button ng-click="pageU=pageU-1; getAll()" ng-disabled="pageU==0" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"> </button>
+		{{pageU+1}}/{{totalUPages}}
+		<button ng-click="pageU=pageU+1; getAll()" ng-disabled="pageU==totalUPages-1" class="btn btn-default"><span class="glyphicon glyphicon-chevron-right"></span></button>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-12 text-center">
+		<span ng-hide="hideSpinner" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+		<div ng-show="showError" class="alert alert-danger" role="alert"><b>Ooops</b>, something went wrong :)</div>
+	</div>
+</div>
+
+<a href="/#/users/add" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Add new user</a>

@@ -1,0 +1,17 @@
+<h2 ng-hide="activity.id">Add activity</h2> <!-- DOMAÆI: Ovaj deo sluzi da znamo da li smo na stranicu stigli sa add ili edit, u zavisnosti od toga æe prikazati naslov -->
+<h2 ng-hide="!activity.id">Edit activity</h2>
+
+<form ng-init="init()" class="form-horizontal">
+	<div class="form-group">
+	    <label class="col-sm-2 control-label">Name</label>
+	    <div class="col-sm-4">
+	    	<input ng-model="activity.name" type="text" class="form-control" placeholder="Name..." autofocus>
+	    </div>
+  	</div>
+  	
+  	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+      		<button ng-disabled="!activity.name" ng-click="save()" type="submit" class="btn btn-default">Save</button>
+      	</div>
+	</div>
+</form>
